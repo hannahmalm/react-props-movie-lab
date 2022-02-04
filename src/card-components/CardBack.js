@@ -12,16 +12,26 @@ export default class CardBack extends Component {
 
   generateRatingElement = () => {
     // implement meeeee! See the readme for instructions
+    //if IMDBRating prop == null, render No Rating Found in h4
+    //else render image tag
+    if (this.props.IMDBRating == null){
+      return <h4>No Rating Found</h4>
+    }
+    return <img src={this.props.IMDBRating} />
   }
 
+  //renders title prop
+  //renders genres prop as comma seperated strings
+  //renders 'No Rating Found' in h4 if IMDBRating prop is null
+  //renders <img> tag is IMDBRating prop is valid with the prop 
   render() {
     return (
       <div className="card-back">
-        <h3 className="title"></h3>
+        <h3 className="title">{this.props.title}</h3>
         <span />
-        { /* your rating element should go here -- you can invoke methods within JSX, à la: this.myMethod() */ }
+        {this.generateRatingElement()} 
         <span />
-        <h5 className="genres"></h5>
+        <h5 className="genres">{this.props.genres.join(', ')}</h5>
       </div>
     )
   }
